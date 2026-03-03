@@ -4,394 +4,516 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BoostPrime — Social Media Growth Premium</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <div class="logo">Boost<span>Prime</span></div>
-  <ul>
-    <li><a href="#platforms">Platform</a></li>
-    <li><a href="#pricing">Harga</a></li>
-    <li><a href="#cara-kerja">Cara Kerja</a></li>
-    <li><a href="#pricing" class="nav-cta">Mulai Sekarang →</a></li>
-  </ul>
-</nav>
+<!-- ══════════════════════════════════════════
+     TOAST CONTAINER
+══════════════════════════════════════════ -->
+<div class="toast-wrap"></div>
 
-<!-- ─── TICKER ─── -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Instagram Followers</span>
-    <span class="ticker-item">YouTube Views</span>
-    <span class="ticker-item">TikTok Likes</span>
-    <span class="ticker-item">Twitter Followers</span>
-    <span class="ticker-item">Spotify Streams</span>
-    <span class="ticker-item">Facebook Page Likes</span>
-    <span class="ticker-item">Pengiriman Cepat</span>
-    <span class="ticker-item">Garansi Premium</span>
-    <span class="ticker-item">Instagram Followers</span>
-    <span class="ticker-item">YouTube Views</span>
-    <span class="ticker-item">TikTok Likes</span>
-    <span class="ticker-item">Twitter Followers</span>
-    <span class="ticker-item">Spotify Streams</span>
-    <span class="ticker-item">Facebook Page Likes</span>
-    <span class="ticker-item">Pengiriman Cepat</span>
-    <span class="ticker-item">Garansi Premium</span>
-  </div>
+<!-- ══════════════════════════════════════════
+     LIGHTBOX
+══════════════════════════════════════════ -->
+<div id="lightbox" class="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="Bukti Pembayaran">
 </div>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-tag">✦ Platform Growth #1 di Indonesia</div>
-  <h1>
-    Dominasi
-    <em>Media Sosial</em>
-    Kamu
-  </h1>
-  <p class="hero-sub">Tingkatkan kredibilitas, jangkauan, dan pengaruh kamu dengan layanan premium growth media sosial. Ribuan kreator & brand sudah membuktikannya.</p>
-  <div class="hero-actions">
-    <a href="#pricing" class="btn-primary">Lihat Paket Harga</a>
-    <a href="#cara-kerja" class="btn-secondary">
-      Cara Kerja
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-num"><span class="counter" data-target="12500">0</span>+</div>
-      <div class="stat-label">Pelanggan Aktif</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num"><span class="counter" data-target="98">0</span>%</div>
-      <div class="stat-label">Tingkat Kepuasan</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num"><span class="counter" data-target="50">0</span>M+</div>
-      <div class="stat-label">Followers Terkirim</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num"><span class="counter" data-target="24">0</span>/7</div>
-      <div class="stat-label">Support Online</div>
-    </div>
-  </div>
-</section>
+<!-- ══════════════════════════════════════════
+     SCREEN 1 — LANDING
+══════════════════════════════════════════ -->
+<div id="screen-landing" class="screen active">
 
-<!-- ─── PLATFORMS ─── -->
-<section class="section" id="platforms">
-  <div class="section-label">Platform yang Kami Layani</div>
-  <h2>6 Platform Populer, Satu Solusi</h2>
-  <div class="platforms-grid">
-    <div class="platform-card">
-      <div class="platform-icon ig-color">📸</div>
-      <h3>Instagram</h3>
-      <p>Tingkatkan profil Instagram kamu dengan followers nyata, likes organik, dan penonton story yang konsisten.</p>
-      <div class="platform-services">
-        <span class="service-tag">Followers</span>
-        <span class="service-tag">Likes</span>
-        <span class="service-tag">Views</span>
-        <span class="service-tag">Komen</span>
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="logo" onclick="showScreen('screen-landing')">Boost<span>Prime</span></div>
+    <div class="nav-right" id="nav-right">
+      <div id="nav-login-area" style="display:flex;gap:8px">
+        <button class="btn btn-ghost" onclick="showAuth('login')">Login</button>
+        <button class="btn btn-gold" onclick="showAuth('register')">Daftar</button>
+      </div>
+      <div id="nav-user-area" class="hidden" style="display:flex;gap:10px;align-items:center">
+        <span class="nav-user">Hi, <strong id="nav-username"></strong></span>
+        <button class="btn btn-ghost" onclick="showDashboard()">Dashboard</button>
+        <button id="nav-admin-btn" class="btn btn-danger hidden" onclick="showAdminPanel()">⚙ Admin</button>
+        <button class="btn btn-ghost" onclick="doLogout()">Keluar</button>
       </div>
     </div>
-    <div class="platform-card">
-      <div class="platform-icon yt-color">▶️</div>
-      <h3>YouTube</h3>
-      <p>Percepat pertumbuhan channel dengan subscriber berkualitas, views organik, dan watch hours yang valid.</p>
-      <div class="platform-services">
-        <span class="service-tag">Subscribers</span>
-        <span class="service-tag">Views</span>
-        <span class="service-tag">Watch Hours</span>
-        <span class="service-tag">Likes</span>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-icon tt-color">🎵</div>
-      <h3>TikTok</h3>
-      <p>Jadikan konten kamu viral dengan followers TikTok aktif, likes masif, dan views yang mengalir deras.</p>
-      <div class="platform-services">
-        <span class="service-tag">Followers</span>
-        <span class="service-tag">Likes</span>
-        <span class="service-tag">Views</span>
-        <span class="service-tag">Share</span>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-icon tw-color">🐦</div>
-      <h3>Twitter / X</h3>
-      <p>Bangun pengaruh di Twitter dengan followers berkualitas, retweets, dan impressions yang tinggi.</p>
-      <div class="platform-services">
-        <span class="service-tag">Followers</span>
-        <span class="service-tag">Retweet</span>
-        <span class="service-tag">Likes</span>
-        <span class="service-tag">Impressions</span>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-icon sp-color">🎧</div>
-      <h3>Spotify</h3>
-      <p>Tingkatkan streams, followers, dan monthly listeners Spotify untuk boost algoritma dan royalty kamu.</p>
-      <div class="platform-services">
-        <span class="service-tag">Streams</span>
-        <span class="service-tag">Followers</span>
-        <span class="service-tag">Monthly Listeners</span>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-icon fb-color">👥</div>
-      <h3>Facebook</h3>
-      <p>Perbesar reach bisnis kamu dengan page likes, post engagement, dan group members yang nyata.</p>
-      <div class="platform-services">
-        <span class="service-tag">Page Likes</span>
-        <span class="service-tag">Post Likes</span>
-        <span class="service-tag">Group Members</span>
-      </div>
+  </nav>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Instagram Followers</span>
+      <span class="ticker-item">YouTube Views</span>
+      <span class="ticker-item">TikTok Likes</span>
+      <span class="ticker-item">Twitter Followers</span>
+      <span class="ticker-item">Spotify Streams</span>
+      <span class="ticker-item">Garansi Premium</span>
+      <span class="ticker-item">Bayar via QRIS</span>
+      <span class="ticker-item">Proses 6-24 Jam</span>
+      <span class="ticker-item">Instagram Followers</span>
+      <span class="ticker-item">YouTube Views</span>
+      <span class="ticker-item">TikTok Likes</span>
+      <span class="ticker-item">Twitter Followers</span>
+      <span class="ticker-item">Spotify Streams</span>
+      <span class="ticker-item">Garansi Premium</span>
+      <span class="ticker-item">Bayar via QRIS</span>
+      <span class="ticker-item">Proses 6-24 Jam</span>
     </div>
   </div>
-</section>
 
-<!-- ─── PRICING ─── -->
-<section class="section pricing-section" id="pricing">
-  <div class="section-label">Harga Transparan, No Hidden Fee</div>
-  <h2>Pilih Paket yang Tepat</h2>
-  <div class="pricing-grid">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow"><span class="live-dot"></span> Platform Growth #1 Indonesia</div>
+    <h1>Dominasi<br><span class="gold">Media Sosial</span><br>Kamu</h1>
+    <p class="hero-sub">Tingkatkan followers, views, dan engagement dengan layanan premium. Bayar mudah via QRIS, proses cepat, garansi nyata.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">Lihat Paket ↓</button>
+      <button class="btn btn-outline" onclick="showAuth('register')">Daftar Gratis</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-val"><span data-count="12500">0</span>+</div><div class="stat-key">Pelanggan Aktif</div></div>
+      <div class="stat-box"><div class="stat-val"><span data-count="98">0</span>%</div><div class="stat-key">Kepuasan</div></div>
+      <div class="stat-box"><div class="stat-val"><span data-count="50">0</span>M+</div><div class="stat-key">Followers Terkirim</div></div>
+      <div class="stat-box"><div class="stat-val">24/7</div><div class="stat-key">Support</div></div>
+    </div>
+  </section>
 
-    <!-- Starter -->
-    <div class="pricing-card">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price"><span class="currency">Rp</span>150.000</div>
-      <div class="plan-desc">Cocok untuk personal branding awal</div>
-      <ul class="plan-features">
-        <li>1.000 Followers Instagram</li>
-        <li>500 Likes per post</li>
-        <li>Pengiriman dalam 24 jam</li>
-        <li>Garansi 30 hari</li>
-        <li>Support via WhatsApp</li>
-      </ul>
-      <button class="btn-plan" onclick="openCheckout('starter')">Beli Sekarang</button>
-    </div>
+  <!-- PRICING -->
+  <section class="section" id="pricing-section" style="background:var(--dark2)">
+    <div class="section-label">Harga Transparan · No Hidden Fee</div>
+    <h2>Atur Sendiri atau Pilih Paket</h2>
 
-    <!-- Pro -->
-    <div class="pricing-card featured">
-      <div class="featured-badge">Terpopuler</div>
-      <div class="plan-name">Pro</div>
-      <div class="plan-price"><span class="currency">Rp</span>450.000</div>
-      <div class="plan-desc">Paling populer untuk content creator</div>
-      <ul class="plan-features">
-        <li>5.000 Followers Instagram</li>
-        <li>2.000 Likes per post</li>
-        <li>10.000 YouTube Views</li>
-        <li>Pengiriman dalam 12 jam</li>
-        <li>Garansi 60 hari</li>
-        <li>Priority Support 24/7</li>
-      </ul>
-      <button class="btn-plan" onclick="openCheckout('pro')">Beli Sekarang</button>
-    </div>
-
-    <!-- Elite -->
-    <div class="pricing-card">
-      <div class="plan-name">Elite</div>
-      <div class="plan-price"><span class="currency">Rp</span>1.200.000</div>
-      <div class="plan-desc">Untuk brand & bisnis skala besar</div>
-      <ul class="plan-features">
-        <li>20.000 Followers Multi-platform</li>
-        <li>10.000 Likes per post</li>
-        <li>50.000 YouTube Views</li>
-        <li>5.000 TikTok Followers</li>
-        <li>Pengiriman dalam 6 jam</li>
-        <li>Garansi 90 hari</li>
-        <li>Dedicated Account Manager</li>
-      </ul>
-      <button class="btn-plan" onclick="openCheckout('elite')">Beli Sekarang</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── HOW IT WORKS ─── -->
-<section class="section" id="cara-kerja" style="background: var(--dark2);">
-  <div class="section-label">Proses Mudah & Cepat</div>
-  <h2>4 Langkah Sederhana</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Pilih Paket</h3>
-      <p>Pilih paket yang sesuai kebutuhan dan budget kamu dari berbagai pilihan yang tersedia.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Isi Data</h3>
-      <p>Masukkan username atau link akun media sosial kamu. Tidak perlu password sama sekali.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Bayar via QRIS</h3>
-      <p>Scan QRIS yang digenerate dan bayar dengan bank atau e-wallet apapun yang kamu punya.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h3>Terima Hasil</h3>
-      <p>Followers, likes, dan views akan mulai masuk sesuai estimasi waktu paket yang dipilih.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TESTIMONIALS ─── -->
-<section class="section" id="testimoni">
-  <div class="section-label">Kata Pelanggan Kami</div>
-  <h2>Mereka Sudah Buktikan</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Paket Pro-nya worth banget! Dalam 12 jam followers Instagram gue naik 5000 dan engagement rate justru ikut naik. Gak nyangka kualitasnya sebagus ini."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">AR</div>
-        <div>
-          <div class="author-name">Ari Ramadhan</div>
-          <div class="author-role">Content Creator, Jakarta</div>
+    <!-- CUSTOM PRICE BUILDER -->
+    <div class="price-builder">
+      <h3>⚡ Atur Harga Sendiri</h3>
+      <div class="price-display" id="price-display">Rp 250rb</div>
+      <input type="range" id="price-slider" class="slider" min="1000" max="1000000" value="250000" step="1000">
+      <div class="slider-labels"><span>Rp 1.000</span><span>Rp 1.000.000</span></div>
+      <div class="price-info-grid" style="margin-top:20px">
+        <div class="price-info-item">
+          <div class="lbl">Estimasi Followers</div>
+          <div class="val" id="est-followers">—</div>
+        </div>
+        <div class="price-info-item">
+          <div class="lbl">Estimasi Views</div>
+          <div class="val" id="est-views">—</div>
         </div>
       </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Bayarnya gampang banget, tinggal scan QRIS dari GoPay langsung done. YouTube channel gue dari 200 subscriber sekarang udah 10K+ dalam sebulan."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">DS</div>
-        <div>
-          <div class="author-name">Dinda Sari</div>
-          <div class="author-role">YouTuber & Podcaster</div>
-        </div>
+
+    <!-- QUICK PICKS -->
+    <div class="section-label">Atau Pilih Paket</div>
+    <div class="quick-picks">
+      <div class="quick-card" id="qc-starter" onclick="pickPackage('starter')">
+        <div class="qc-price">Rp 50rb</div>
+        <div class="qc-name">Starter</div>
+        <div class="qc-desc">1.000 Followers + 500 Likes. Cocok untuk mulai branding.</div>
+      </div>
+      <div class="quick-card" id="qc-pro" onclick="pickPackage('pro')">
+        <div class="qc-hot">POPULER</div>
+        <div class="qc-price">Rp 250rb</div>
+        <div class="qc-name">Pro</div>
+        <div class="qc-desc">5K Followers + 10K Views multi-platform. Paling diminati.</div>
+      </div>
+      <div class="quick-card" id="qc-elite" onclick="pickPackage('elite')">
+        <div class="qc-price">Rp 750rb</div>
+        <div class="qc-name">Elite</div>
+        <div class="qc-desc">20K Followers + 50K Views. Untuk brand skala besar.</div>
       </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Paket Elite buat brand kita benar-benar game changer. Multi-platform growth, pengiriman cepat, dan ada dedicated manager yang selalu responsif. 10/10!"</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">BW</div>
-        <div>
-          <div class="author-name">Bagas Wibowo</div>
-          <div class="author-role">Brand Manager, Surabaya</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ─── CTA ─── -->
-<section class="cta-section" id="cta">
-  <h2>Siap Jadi <em>Viral?</em></h2>
-  <p>Ribuan kreator sudah membuktikan. Sekarang giliran kamu.</p>
-  <a href="#pricing" class="btn-primary">Mulai Sekarang — Gratis Konsultasi</a>
-</section>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="logo">Boost<span>Prime</span></div>
-  <p>© 2025 BoostPrime. Semua hak dilindungi.</p>
-  <div class="footer-links">
-    <a href="#">Syarat & Ketentuan</a>
-    <a href="#">Kebijakan Privasi</a>
-    <a href="#">Kontak</a>
-  </div>
-</footer>
-
-<!-- ─── MODAL CHECKOUT + QRIS ─── -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Checkout — <span id="modal-plan-name">Paket Pro</span></h3>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-
-      <!-- Step tabs -->
-      <div class="step-tabs">
-        <div class="step-tab active" id="tab-1">
-          <span class="step-tab-num">01</span>
-          Data & Pembayaran
-        </div>
-        <div class="step-tab" id="tab-2">
-          <span class="step-tab-num">02</span>
-          Scan QRIS
-        </div>
-      </div>
-
-      <!-- Order Summary -->
-      <div class="order-summary">
-        <div class="order-row"><span>Layanan</span><span id="summary-plan">—</span></div>
-        <div class="order-row"><span>Harga</span><span id="summary-price">—</span></div>
-        <div class="order-row"><span>Total Bayar</span><span class="gold" id="summary-total">—</span></div>
-      </div>
-
-      <!-- Form Section -->
-      <div id="form-section">
-        <div class="form-group">
-          <label class="form-label" for="input-name">Nama Lengkap</label>
-          <input type="text" id="input-name" class="form-input" placeholder="Masukkan nama kamu">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="input-email">Email</label>
-          <input type="email" id="input-email" class="form-input" placeholder="email@kamu.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="input-platform">Platform Utama</label>
-          <select id="input-platform" class="form-input">
-            <option value="">-- Pilih Platform --</option>
-            <option value="instagram">Instagram</option>
-            <option value="youtube">YouTube</option>
-            <option value="tiktok">TikTok</option>
-            <option value="twitter">Twitter / X</option>
-            <option value="spotify">Spotify</option>
-            <option value="facebook">Facebook</option>
+    <!-- BUY FORM -->
+    <div style="max-width:680px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+        <div class="form-group" style="margin:0">
+          <label class="form-label">Platform</label>
+          <select id="main-platform" class="form-input">
+            <option value="">-- Pilih --</option>
+            <option value="Instagram">Instagram</option>
+            <option value="YouTube">YouTube</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Twitter/X">Twitter / X</option>
+            <option value="Spotify">Spotify</option>
+            <option value="Facebook">Facebook</option>
           </select>
         </div>
+        <div class="form-group" style="margin:0">
+          <label class="form-label">Username / Link Akun</label>
+          <input type="text" id="main-username" class="form-input" placeholder="@username atau link">
+        </div>
+      </div>
+      <button class="btn btn-gold btn-block" onclick="handleBuyNow()">⚡ Beli Sekarang & Generate QRIS</button>
+      <p class="form-hint" style="text-align:center;margin-top:10px">Wajib login untuk melanjutkan pembayaran</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-label">Cara Mudah</div>
+    <h2>4 Langkah Sederhana</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative">
+      <div style="position:absolute;top:28px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+      <div style="padding:0 24px;text-align:center">
+        <div style="width:56px;height:56px;border:1px solid rgba(212,175,55,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gold);background:var(--dark);position:relative;z-index:1">01</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:7px">Daftar / Login</h3>
+        <p style="font-size:12px;color:var(--muted2);line-height:1.6">Buat akun gratis atau login jika sudah punya.</p>
+      </div>
+      <div style="padding:0 24px;text-align:center">
+        <div style="width:56px;height:56px;border:1px solid rgba(212,175,55,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gold);background:var(--dark);position:relative;z-index:1">02</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:7px">Pilih & Atur Harga</h3>
+        <p style="font-size:12px;color:var(--muted2);line-height:1.6">Atur sendiri dari Rp 1.000 sampai Rp 1.000.000.</p>
+      </div>
+      <div style="padding:0 24px;text-align:center">
+        <div style="width:56px;height:56px;border:1px solid rgba(212,175,55,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gold);background:var(--dark);position:relative;z-index:1">03</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:7px">Scan QRIS</h3>
+        <p style="font-size:12px;color:var(--muted2);line-height:1.6">Bayar dengan GoPay, OVO, DANA, atau bank apapun.</p>
+      </div>
+      <div style="padding:0 24px;text-align:center">
+        <div style="width:56px;height:56px;border:1px solid rgba(212,175,55,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gold);background:var(--dark);position:relative;z-index:1">04</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:7px">Upload Bukti</h3>
+        <p style="font-size:12px;color:var(--muted2);line-height:1.6">Kirim screenshot pembayaran ke admin untuk verifikasi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;background:var(--dark2);flex-shrink:0">
+    <div class="logo">Boost<span>Prime</span></div>
+    <p style="color:var(--muted);font-size:12px">© 2025 BoostPrime. All rights reserved.</p>
+    <div style="display:flex;gap:20px">
+      <a href="#" style="color:var(--muted);text-decoration:none;font-size:12px">Syarat & Ketentuan</a>
+      <a href="#" style="color:var(--muted);text-decoration:none;font-size:12px">Privasi</a>
+    </div>
+  </footer>
+</div><!-- /screen-landing -->
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 2 — AUTH
+══════════════════════════════════════════ -->
+<div id="screen-auth" class="screen">
+  <nav class="topnav">
+    <div class="logo" onclick="showScreen('screen-landing')">Boost<span>Prime</span></div>
+    <button class="btn btn-ghost" onclick="showScreen('screen-landing')">← Kembali</button>
+  </nav>
+  <div class="auth-wrap">
+    <div class="auth-box">
+      <div class="auth-title">Selamat Datang</div>
+      <div class="auth-sub">Login atau buat akun baru untuk melanjutkan</div>
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</div>
+        <div class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Daftar</div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login">
         <div class="form-group">
-          <label class="form-label" for="input-username">Username / Link Akun</label>
-          <input type="text" id="input-username" class="form-input" placeholder="@username atau link profil">
+          <label class="form-label">Email atau Username</label>
+          <input id="login-email" type="text" class="form-input" placeholder="email@kamu.com" onkeydown="if(event.key==='Enter')doLogin()">
         </div>
-        <button class="btn-generate" onclick="generateQRIS()">
-          ⚡ Generate QRIS & Bayar
-        </button>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input id="login-pass" type="password" class="form-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <button class="btn btn-gold btn-block" onclick="doLogin()">Login →</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:14px">
+          Admin default: <code style="color:var(--gold)">admin@boostprime.id</code> / <code style="color:var(--gold)">admin123</code>
+        </p>
       </div>
 
-      <!-- QRIS Section -->
-      <div class="qris-section" id="qris-section">
-        <div class="qris-info">
-          <p><strong>Cara Bayar:</strong> Buka aplikasi bank atau e-wallet kamu (GoPay, OVO, DANA, ShopeePay, dll), pilih menu Scan QR, lalu arahkan ke kode di bawah ini.</p>
+      <!-- REGISTER FORM -->
+      <div id="form-register" class="hidden">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input id="reg-username" type="text" class="form-input" placeholder="username kamu">
         </div>
-
-        <div class="countdown">
-          <div class="countdown-num" id="countdown-display">15:00</div>
-          <div class="countdown-label">Sisa Waktu Pembayaran</div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input id="reg-email" type="email" class="form-input" placeholder="email@kamu.com">
         </div>
-
-        <div class="qris-wrapper">
-          <div class="qris-header">
-            <div class="qris-logo">QRIS<span>.</span></div>
-            <div class="qris-badge">NASIONAL</div>
-          </div>
-          <div id="qrcode-container"></div>
-          <div class="qris-merchant">
-            <div class="qris-merchant-name" id="qris-merchant-name">BoostPrime</div>
-            <div class="qris-amount" id="qris-amount-display">Rp —</div>
-          </div>
-          <div class="qris-footer-text">Gunakan aplikasi bank atau e-wallet apapun yang mendukung QRIS</div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input id="reg-pass" type="password" class="form-input" placeholder="Min. 6 karakter">
         </div>
-
-        <button class="btn-download" onclick="downloadQRIS()">
-          ⬇ Download QRIS (PNG)
-        </button>
-        <button class="btn-plan" style="margin-top:10px; width:100%;" onclick="document.getElementById('form-section').style.display='block'; document.getElementById('qris-section').classList.remove('visible'); setActiveTab(1);">
-          ← Kembali ke Form
-        </button>
+        <div class="form-group">
+          <label class="form-label">Konfirmasi Password</label>
+          <input id="reg-pass2" type="password" class="form-input" placeholder="Ulangi password" onkeydown="if(event.key==='Enter')doRegister()">
+        </div>
+        <button class="btn btn-gold btn-block" onclick="doRegister()">Buat Akun →</button>
       </div>
-
     </div>
   </div>
-</div>
+</div><!-- /screen-auth -->
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 3 — CHECKOUT + QRIS
+══════════════════════════════════════════ -->
+<div id="screen-checkout" class="screen">
+  <nav class="topnav">
+    <div class="logo" onclick="showScreen('screen-landing')">Boost<span>Prime</span></div>
+    <button class="btn btn-ghost" onclick="showScreen('screen-landing')">← Batal</button>
+  </nav>
+
+  <div class="checkout-layout">
+    <!-- LEFT: Info + Upload -->
+    <div class="checkout-left">
+      <div class="checkout-title">Konfirmasi Pembayaran</div>
+      <div class="checkout-sub">Scan QRIS, lalu upload screenshot bukti pembayaran</div>
+
+      <!-- Order Summary -->
+      <div class="order-card">
+        <div class="order-row"><span>Paket</span><span id="co-plan">—</span></div>
+        <div class="order-row"><span>Platform</span><span id="co-platform">—</span></div>
+        <div class="order-row"><span>Username Target</span><span id="co-user">—</span></div>
+        <div class="order-row"><span>Harga</span><span id="co-price">—</span></div>
+        <div class="order-row total"><span>Total Bayar</span><span class="order-total-amt" id="co-total">—</span></div>
+      </div>
+
+      <div style="height:1px;background:var(--border);margin:24px 0"></div>
+
+      <!-- Upload Bukti -->
+      <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:16px">📎 Upload Bukti Pembayaran</h3>
+      <p style="font-size:12px;color:var(--muted2);margin-bottom:18px;line-height:1.6">Setelah bayar via QRIS di sebelah kanan, upload screenshot konfirmasi pembayaran dari aplikasi bank/e-wallet kamu.</p>
+
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="proof-file" accept="image/*">
+        <div class="upload-icon">📷</div>
+        <div class="upload-txt"><strong>Klik atau drag</strong> untuk upload bukti</div>
+        <div class="upload-hint">PNG, JPG, WEBP · Maks 5MB</div>
+      </div>
+
+      <div class="upload-preview hidden" id="proof-preview">
+        <img id="proof-preview-img" src="" alt="Preview">
+        <button class="rm-btn" onclick="removeProof()">✕</button>
+      </div>
+
+      <button class="btn btn-gold btn-block" onclick="submitProof()">
+        ✅ Kirim Bukti ke Admin
+      </button>
+      <p class="form-hint" style="text-align:center;margin-top:8px">Admin akan memverifikasi dalam 1×24 jam</p>
+    </div>
+
+    <!-- RIGHT: QRIS -->
+    <div class="checkout-right">
+      <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px">Scan QRIS untuk Bayar</h3>
+      <p style="font-size:12px;color:var(--muted2);margin-bottom:20px">Buka aplikasi bank atau e-wallet → Scan QR</p>
+
+      <div class="countdown-ring">
+        <div class="countdown-val" id="countdown-val">15:00</div>
+        <div class="countdown-key">Sisa Waktu Pembayaran</div>
+      </div>
+
+      <div class="qris-panel">
+        <div class="qris-topbar">
+          <div class="qris-wordmark">
+            <span class="q">Q</span><span class="r">R</span><span class="i">I</span><span class="s">S</span>
+          </div>
+          <div class="qris-national">NASIONAL</div>
+        </div>
+        <div id="qr-render"></div>
+        <div class="qris-mname">BoostPrime</div>
+        <div class="qris-mamt" id="qris-amt">—</div>
+        <div class="qris-note">Gunakan aplikasi bank atau e-wallet apapun yang mendukung QRIS</div>
+      </div>
+
+      <div class="pm-row">
+        <span class="pm-chip">GoPay</span>
+        <span class="pm-chip">OVO</span>
+        <span class="pm-chip">DANA</span>
+        <span class="pm-chip">ShopeePay</span>
+        <span class="pm-chip">LinkAja</span>
+        <span class="pm-chip">BCA</span>
+        <span class="pm-chip">BRI</span>
+        <span class="pm-chip">BNI</span>
+        <span class="pm-chip">Mandiri</span>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="refreshQRIS()">↻ Refresh</button>
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="downloadQRIS()">⬇ Download</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /screen-checkout -->
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 4 — USER DASHBOARD
+══════════════════════════════════════════ -->
+<div id="screen-dashboard" class="screen">
+  <nav class="topnav">
+    <div class="logo" onclick="showScreen('screen-landing')">Boost<span>Prime</span></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="nav-user">Hi, <strong id="nav-username2"></strong></span>
+      <button class="btn btn-gold btn-sm" onclick="showScreen('screen-landing');setTimeout(()=>document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'}),100)">+ Order Baru</button>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Keluar</button>
+    </div>
+  </nav>
+
+  <div class="dashboard">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div style="padding:16px 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px" id="dash-username">—</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:2px" id="dash-email">—</div>
+        <div style="font-size:11px;color:var(--gold);margin-top:4px" id="dash-role">—</div>
+      </div>
+      <div class="sidebar-lbl" style="padding:0 20px">Menu</div>
+      <button class="sidebar-link active" id="sidebar-orders" onclick="switchUserTab('orders')">
+        <span class="ic">📋</span> Riwayat Order
+      </button>
+      <button class="sidebar-link" id="sidebar-profile" onclick="switchUserTab('profile')">
+        <span class="ic">👤</span> Profil Saya
+      </button>
+      <button class="sidebar-link hidden" id="sidebar-admin-link" onclick="showAdminPanel()">
+        <span class="ic">⚙</span> Panel Admin
+      </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="dash-content">
+
+      <!-- Orders Panel -->
+      <div id="panel-orders" class="dash-panel">
+        <div class="dash-title">Riwayat Order</div>
+        <div class="empty-state hidden" id="user-orders-empty">
+          <div class="empty-icon">📭</div>
+          <div>Belum ada order. <button class="btn btn-gold btn-sm" onclick="showScreen('screen-landing')">Order Sekarang</button></div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Layanan</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Tanggal</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody id="user-orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Profile Panel -->
+      <div id="panel-profile" class="dash-panel hidden">
+        <div class="dash-title">Profil Saya</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px">
+          <div style="background:var(--dark2);border:1px solid var(--border);padding:18px">
+            <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Total Order</div>
+            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold)" id="profile-total-orders">0</div>
+          </div>
+          <div style="background:var(--dark2);border:1px solid var(--border);padding:18px">
+            <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Total Belanja</div>
+            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold)" id="profile-total-spent">0</div>
+          </div>
+          <div style="background:var(--dark2);border:1px solid var(--border);padding:18px">
+            <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Terverifikasi</div>
+            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--green)" id="profile-verified">0</div>
+          </div>
+        </div>
+        <div style="background:var(--dark2);border:1px solid var(--border);padding:24px;max-width:400px">
+          <div style="margin-bottom:16px">
+            <div class="form-label">Username</div>
+            <div style="font-size:14px" id="profile-uname">—</div>
+          </div>
+          <div>
+            <div class="form-label">Email</div>
+            <div style="font-size:14px" id="profile-email">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dash-content -->
+  </div><!-- /dashboard -->
+</div><!-- /screen-dashboard -->
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 5 — ADMIN PANEL
+══════════════════════════════════════════ -->
+<div id="screen-admin" class="screen">
+  <nav class="topnav">
+    <div class="logo" onclick="showScreen('screen-landing')">Boost<span>Prime</span></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost btn-sm" onclick="showDashboard()">← Dashboard</button>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Keluar</button>
+    </div>
+  </nav>
+  <div class="admin-bar">
+    <span class="admin-badge">ADMIN</span>
+    <span style="font-size:11px;color:var(--muted2)">Panel Manajemen Pembayaran BoostPrime</span>
+  </div>
+
+  <div class="dash-content" style="padding:36px 48px">
+    <!-- Stats -->
+    <div class="stats-admin">
+      <div class="sac"><div class="sac-val text-gold" id="a-total">0</div><div class="sac-key">Total Order</div></div>
+      <div class="sac"><div class="sac-val" style="color:#fbbf24" id="a-pending">0</div><div class="sac-key">Menunggu</div></div>
+      <div class="sac"><div class="sac-val text-green" id="a-verified">0</div><div class="sac-key">Terverifikasi</div></div>
+      <div class="sac"><div class="sac-val text-gold" id="a-revenue">Rp 0</div><div class="sac-key">Total Revenue</div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px">
+      <button class="btn btn-ghost admin-tab-btn" data-tab="pending" onclick="switchAdminTab('pending')" style="border-radius:0;border-bottom:none">
+        ⏳ Menunggu Verifikasi
+      </button>
+      <button class="btn btn-ghost admin-tab-btn" data-tab="verified" onclick="switchAdminTab('verified')" style="border-radius:0;border-bottom:none">
+        ✅ Terverifikasi
+      </button>
+      <button class="btn btn-ghost admin-tab-btn" data-tab="rejected" onclick="switchAdminTab('rejected')" style="border-radius:0;border-bottom:none">
+        ❌ Ditolak
+      </button>
+    </div>
+
+    <!-- Orders -->
+    <div id="admin-empty" class="empty-state hidden">
+      <div class="empty-icon">📭</div>
+      <div style="font-size:13px">Tidak ada order di kategori ini</div>
+    </div>
+    <div id="admin-orders-container"></div>
+  </div>
+</div><!-- /screen-admin -->
+
 
 <script src="script.js"></script>
+<script>
+  // Extra init after DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sync nav-username2
+    const u = getCurrentUser();
+    if (u) {
+      const el = document.getElementById('nav-username2');
+      if (el) el.textContent = u.username;
+    }
+    // Profile panel populate
+    document.getElementById('sidebar-profile') && document.getElementById('sidebar-profile').addEventListener('click', () => {
+      const cu = getCurrentUser();
+      if (!cu) return;
+      document.getElementById('profile-uname').textContent = cu.username;
+      document.getElementById('profile-email').textContent = cu.email;
+    });
+    // Admin tab active style
+    document.querySelectorAll('.admin-tab-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab-btn').forEach(x => x.style.color = '');
+        b.style.color = 'var(--gold)';
+      });
+    });
+    // Initial admin tab highlight
+    const firstAdminBtn = document.querySelector('.admin-tab-btn');
+    if (firstAdminBtn) firstAdminBtn.style.color = 'var(--gold)';
+  });
+</script>
 </body>
 </html>
